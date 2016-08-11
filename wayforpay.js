@@ -68,7 +68,7 @@ module.exports = function(merchant_account, merchant_password) {
         this._params = params;
         this._params.transactionType = action;
         this._params.merchantAccount = merchant_account;
-        this._params.merchantSignature = $this._buildSignature(params);
+        this._params.merchantSignature = this._buildSignature(params);
 
         if(this._action !== MODE_PURCHASE) this._params.apiVersion = API_VERSION;
         this._params = this._checkFields(this._params);
@@ -77,7 +77,7 @@ module.exports = function(merchant_account, merchant_password) {
     this.generatePurchaseUrl = function(params)
     {
         this._prepare(MODE_PURCHASE, params);
-        //dd($this->_params);
+
         return PURCHASE_URL + '/get?' + http_build_query($this._params);
     }
 
