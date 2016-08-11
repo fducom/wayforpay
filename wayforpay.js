@@ -78,7 +78,7 @@ module.exports = function(merchant_account, merchant_password) {
     {
         this._prepare(MODE_PURCHASE, params);
         //dd($this->_params);
-        return PURCHASE_URL . '/get?' + http_build_query($this._params);
+        return PURCHASE_URL + '/get?' + http_build_query($this._params);
     }
 
 
