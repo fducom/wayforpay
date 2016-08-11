@@ -1,0 +1,19 @@
+{
+  "name": "WayForPay",
+  "version": "0.0.1",
+  "description": "WayForPay Api nodejs sdk",
+  "main": "wayforpay.js",
+  "homepage": "https://github.com/fducom/wayforpay",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fducom/wayforpay.git"
+  },
+  "keywords": [
+    "WayForPay"
+  ],
+  "devDependencies": {
+    "tap": ""
+  },
+  "author": "Dmitry Fedorchuk <fducom@gmail.com>",
+  "license": "MIT"
+}
