@@ -14,6 +14,7 @@
  */
 var request = require('request');
 var crypto  = require('crypto');
+var _ = require('lodash');
 var http_build_query = require('locutus/php/url/http_build_query'); //npm install locutus
 //var http_build_query = require('qhttp/http_build_query'); //  var qhttp = require('qhttp'); var http_build_query = require('qhttp/http_build_query'); //  var qhttp = require('qhttp');
 
@@ -46,11 +47,10 @@ module.exports = function(merchant_account, merchant_password) {
     this.api = function( params, callback, callbackerr){
 
 
-        params.merchant_account = merchant_account;
         var data = JSON.stringify(params);
         request.post(API_URL , data, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    callback( JSON.parse(body) ) 
+                    callback( JSON.parse(body) )
                 }else{
                     callbackerr(error, response);
                 }
@@ -77,9 +77,26 @@ module.exports = function(merchant_account, merchant_password) {
     this.generatePurchaseUrl = function(params)
     {
         this._prepare(MODE_PURCHASE, params);
+        //dd($this->_params);
 
-        return PURCHASE_URL + '/get?' + http_build_query($this._params);
+        // let arrParam = Object.values(params);
+
+
+
+        //console.log(serialize({foo: "hi there", bar: "100%" }));
+
+        return PURCHASE_URL + '/get?' + serialize(params);
     }
+
+    var serialize = function(obj) {
+        var str = [];
+        for(var p in obj)
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+        return str.join("&");
+    }
+
 
 
     /**
@@ -93,7 +110,6 @@ module.exports = function(merchant_account, merchant_password) {
      */
     this._checkFields = function(params){
 
-        params.merchant_account = merchant_account;
 
         if(!params.merchantAccount)
             throw new Error('version is null');
@@ -130,8 +146,11 @@ module.exports = function(merchant_account, merchant_password) {
      */
     this._buildSignature = function(params){
 
-        const secret = params.join(';');
-        const hash = crypto.createHmac('md5', secret)
+        let arrParam = _.values(params);
+
+        const secret = arrParam.join(';');
+        var buffer = new TextEncoder("utf-8").encode(secret);
+        const hash = crypto.createHmac('md5', buffer)
             .update(merchant_password)
             .digest('hex');
 
