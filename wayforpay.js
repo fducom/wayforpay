@@ -57,12 +57,6 @@ module.exports = function (merchant_account, merchant_password) {
      */
     this._query = function () {
 
-        //var options = {
-        //    url: API_URL,
-        //    headers: {
-        //        'content-type': 'application/json'
-        //    }
-        //};
         console.log('_query');
 
         let data = JSON.stringify(this._fields);

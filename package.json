@@ -6,14 +6,20 @@
   "homepage": "https://github.com/fducom/wayforpay",
   "repository": {
     "type": "git",
-    "url": "git@github.com:fducom/wayforpay.git"
+    "url": "git+ssh://git@github.com/fducom/wayforpay.git"
   },
   "keywords": [
-    "WayForPay"
+    "WayForPay,Payment,Pay system"
   ],
   "devDependencies": {
     "tap": ""
   },
   "author": "Dmitry Fedorchuk <fducom@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fducom/wayforpay/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
