@@ -1,5 +1,5 @@
 {
-  "name": "WayForPay",
+  "name": "wayforpay",
   "version": "0.0.1",
   "description": "WayForPay Api nodejs sdk",
   "main": "wayforpay.js",
