@@ -318,9 +318,9 @@ module.exports = function (merchant_account, merchant_password) {
      */
     this._checkFields = function () {
         console.log('_checkFields');
-        var required = this._getRequiredFields;
+        let required = this._getRequiredFields;
         let error = [];
-        var parameters = this._fields;
+        let parameters = this._fields;
         _(required).forEach(function (item) {
             if (array_key_exists(item, parameters)) {
                 if (!(parameters[item])) {
@@ -353,7 +353,7 @@ module.exports = function (merchant_account, merchant_password) {
         let signFields = this._getFieldsNameForSignature();
         let data = [];
         let error = [];
-        var parameters = this._fields;
+        let parameters = this._fields;
 
         _(signFields).forEach(function (item) {
             if (array_key_exists(item, parameters)) {
@@ -374,8 +374,8 @@ module.exports = function (merchant_account, merchant_password) {
             throw new Error('Missed signature field(s): ' + JSON.stringify(error));
         }
         let arrParam = _.values(data);
-        const secret = arrParam.join(FIELDS_DELIMITER);
-        var buffer = utf8.encode(secret);
+        let secret = arrParam.join(FIELDS_DELIMITER);
+        let buffer = utf8.encode(secret);
 
         const hash = crypto.createHmac('md5', merchant_password)
             .update(buffer)
@@ -424,7 +424,7 @@ module.exports = function (merchant_account, merchant_password) {
                     'productCount',
                     'productPrice'
                 ];
-                var additional = (this._fields['recToken']) ?
+                let additional = (this._fields['recToken']) ?
                     ['recToken'] :
                     ['card', 'expMonth', 'expYear', 'cardCvv', 'cardHolder'];
                 return required.concat(additional).unique();
@@ -519,7 +519,7 @@ module.exports = function (merchant_account, merchant_password) {
     ////refact
 
     var serialize = function (obj) {
-        var str = [];
+        let str = [];
         for (var p in obj)
             if (obj.hasOwnProperty(p)) {
                 str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
