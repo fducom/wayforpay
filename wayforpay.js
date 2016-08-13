@@ -138,7 +138,8 @@ module.exports = function (merchant_account, merchant_password) {
         return this._query();
     };
 
-    /**
+    /**    "wayforpay": "0.0.1"
+
      * MODE_CHECK_STATUS
      *
      * @param fields
