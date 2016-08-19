@@ -55,20 +55,22 @@ module.exports = function (merchant_account, merchant_password) {
      *
      * @return Object
      */
-    this._query = function () {
+    this._query = function (call) {
 
         console.log('_query');
 
         let data = JSON.stringify(this._fields);
+
         request.put({
                 url: API_URL,
                 body: data,
                 headers: {'Content-Type': 'application/json'}
             }, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    return 'ok';
+                    call(body);
                 } else {
-                    return body;
+                    call(body);
+
                 }
             }
         );
@@ -110,9 +112,9 @@ module.exports = function (merchant_account, merchant_password) {
      * @param fields
      * @return mixed
      */
-    this.settle = function (fields) {
+    this.settle = function (fields, cb) {
         this._prepare(MODE_SETTLE, fields);
-        return this._query();
+        return this._query(cb);
     };
 
     /**
@@ -121,10 +123,10 @@ module.exports = function (merchant_account, merchant_password) {
      * @param fields
      * @return mixed
      */
-    this.charge = function (fields) {
+    this.charge = function (fields, cb) {
         this._prepare(MODE_CHARGE, fields);
 
-        return this._query();
+        return this._query(cb);
     };
 
     /**
@@ -133,9 +135,9 @@ module.exports = function (merchant_account, merchant_password) {
      * @param fields
      * @return mixed
      */
-    this.refund = function (fields) {
+    this.refund = function (fields, cb) {
         this._prepare(MODE_REFUND, fields);
-        return this._query();
+        return this._query(cb);
     };
 
     /**    "wayforpay": "0.0.1"
@@ -145,9 +147,9 @@ module.exports = function (merchant_account, merchant_password) {
      * @param fields
      * @return mixed
      */
-    this.checkStatus = function (fields) {
+    this.checkStatus = function (fields, cb) {
         this._prepare(MODE_CHECK_STATUS, fields);
-        return this._query();
+        return this._query(cb);
     };
 
     /**
@@ -156,9 +158,9 @@ module.exports = function (merchant_account, merchant_password) {
      * @param fields
      * @return mixed
      */
-    this.complete3ds = function (fields) {
+    this.complete3ds = function (fields, cb) {
         this._prepare(COMPLETE_3DS, fields);
-        return this._query();
+        return this._query(cb);
     };
 
     /**
@@ -167,9 +169,9 @@ module.exports = function (merchant_account, merchant_password) {
      * @param fields
      * @return mixed
      */
-    this.account2card = function (fields) {
+    this.account2card = function (fields, cb) {
         this._prepare(MODE_P2P_CREDIT, fields);
-        return this._query();
+        return this._query(cb);
     };
 
     /**
@@ -178,9 +180,9 @@ module.exports = function (merchant_account, merchant_password) {
      * @param fields
      * @return mixed
      */
-    this.createInvoice = function (fields) {
+    this.createInvoice = function (fields, cb) {
         this._prepare(MODE_CREATE_INVOICE, fields);
-        return this._query();
+        return this._query(cb);
     };
 
     /**
@@ -189,9 +191,9 @@ module.exports = function (merchant_account, merchant_password) {
      * @param fields
      * @return mixed
      */
-    this.account2phone = function (fields) {
+    this.account2phone = function (fields, cb) {
         this._prepare(MODE_P2_PHONE, fields);
-        return this._query();
+        return this._query(cb);
     };
     /**
      * MODE_PURCHASE
@@ -249,6 +251,13 @@ module.exports = function (merchant_account, merchant_password) {
                     'transactionType',
                     'authorization_ticket',
                     'd3ds_pares'
+                ];
+                break;
+            case 'ACCEPT':
+                return [
+                    'orderReference',
+                    'status',
+                    'time',
                 ];
                 break;
 
@@ -409,6 +418,12 @@ module.exports = function (merchant_account, merchant_password) {
                     'amount',
                     'currency',
                     'apiVersion'
+                ];
+            case 'ACCEPT':
+                return [
+                    'orderReference',
+                    'status',
+                    'time',
                 ];
             case 'CHARGE':
                 var required = [
