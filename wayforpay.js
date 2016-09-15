@@ -64,7 +64,7 @@ module.exports = function (merchant_account, merchant_password) {
         request.put({
                 url: API_URL,
                 body: data,
-                headers: {'Content-Type': 'application/json'}
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
             }, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     call(body);

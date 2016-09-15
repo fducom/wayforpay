@@ -5,7 +5,7 @@ var wayforpay = new WayForPay(merchant_account, merchant_password);<br>
 var params = {<br>
     'merchantDomainName': 'app.wepster.com',<br>
     'merchantTransactionSecureType': 'AUTO',<br>
-    'serviceUrl': 'http://app.wepster.com/wfp/return',<br>
+    'serviceUrl': 'http://yourdomain.com/wfp/return',<br>
     'orderReference': 'orderid001',<br>
     'orderDate': '14898322',<br>
     'amount': '1.00',<br>
