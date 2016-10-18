@@ -384,10 +384,9 @@ module.exports = function (merchant_account, merchant_password) {
         }
         let arrParam = _.values(data);
         let secret = arrParam.join(FIELDS_DELIMITER);
-        let buffer = utf8.encode(secret);
 
         const hash = crypto.createHmac('md5', merchant_password)
-            .update(buffer)
+            .update(secret)
             .digest('hex');
 
         return hash;
