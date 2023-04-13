@@ -3,7 +3,7 @@ var WayForPay = require('wayforpay');
 var wayforpay = new WayForPay(merchant_account, merchant_password);<br>
 <br>
 var params = {<br>
-    'merchantDomainName': 'app.wepster.com',<br>
+    'merchantDomainName': 'wepster.com',<br>
     'merchantTransactionSecureType': 'AUTO',<br>
     'serviceUrl': 'http://yourdomain.com/wfp/return',<br>
     'orderReference': 'orderid001',<br>
@@ -18,3 +18,15 @@ var params = {<br>
 <br>
 var generatePurchaseUrl = wayforpay.generatePurchaseUrl(params);
 
+
+
+
+
+
+
+
+
+
+
+
+Спонсор Wepster.com - Сервіс автоматизації маркетингу, інтеграції месенджерів з crm і побудова чатботів на конструкторі
