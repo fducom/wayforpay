@@ -2,7 +2,7 @@
 /**
  WayForPay api for JavaScript
 
- Copyright (c) 2016 Dmitry Fedorchuk
+ Copyright (c) 2016 Dmytro Fedorchuk
 
  URL: https://github.com/fducom
 
