@@ -24,9 +24,10 @@ var generatePurchaseUrl = wayforpay.generatePurchaseUrl(params);
 
 
 
+Thanks me:
+https://send.monobank.ua/jar/5FSYADyifF
 
 
 
-
-
-Спонсор Wepster.com - Сервіс автоматизації маркетингу, інтеграції месенджерів з crm і побудова чатботів на конструкторі
+Support:
+Wepster.com - Сервіс автоматизації маркетингу, інтеграції месенджерів з crm і побудова чатботів на конструкторі
